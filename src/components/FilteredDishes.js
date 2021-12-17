@@ -1,10 +1,33 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 function FilteredDishes(props) {
 
+    const [filteredCategory,setFilteredCategory]=useState([])
+
+
+    const selectDishCategory=((category)=>{
+        const alldishes=props.menu.filter((item)=>{
+            return item.strCategory===category
+        }).map((item)=>{
+            return (
+                <li>
+                    <img src={item.strMealThumb} alt="" />
+                    <h5>{item.strMeal}</h5>
+                </li>
+            )
+        })
+        console.log(alldishes)
+        if (!alldishes.length){
+            setFilteredCategory(<h5>No Results Found</h5>)
+        }else{
+            setFilteredCategory(alldishes)
+        }
+        
+    })
+
     const allcategory=props.category.map((item)=>{
         return(
-            <li>{item.strCategory}</li>
+            <li onClick={()=>{selectDishCategory(item.strCategory)}}>{item.strCategory}</li>
         )
     })
 
@@ -18,9 +41,15 @@ function FilteredDishes(props) {
                 <div className="filterd-dishes">
                     <ul>
 
-                        {allcategory}
+                      {allcategory} 
 
                     </ul>
+                </div>
+                <div className="filtered-dishes-results">
+                <ul className="flex flex-wrap gap-30">
+                    {filteredCategory}
+                </ul>
+
                 </div>
             </div>
             

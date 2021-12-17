@@ -9,6 +9,7 @@ import FilteredDishes from './FilteredDishes';
 function Menus() {
     const[menu,setMenu]=useState([])
     const[category,setCategory]=useState([])
+    const[loader,setLoader]=useState(true)
 
     async function getAllMenus(){
         const API_URL="https://www.themealdb.com/api/json/v1/1/search.php?f=c"
@@ -17,6 +18,7 @@ function Menus() {
         let data=await response.json()
         setMenu(data.meals)
         console.log("spec",data.meals) 
+        setLoader(false)
     }
     async function getCategory(){
         const API_URL="https://www.themealdb.com/api/json/v1/1/categories.php"
@@ -25,6 +27,7 @@ function Menus() {
         let data=await response.json()
         setCategory(data.categories)
         console.log("category",category)
+        setLoader(false)
     }
     useEffect(()=>{
         getAllMenus()
@@ -44,8 +47,9 @@ function Menus() {
             
             
             <Hero/>
-            <SpecialDish menu={menu}/>
-            <FilteredDishes category={category}/>
+           {!loader?<SpecialDish menu={menu}/>:<div className="loader" style={{color:'white'}}>Loading</div>} 
+           {!loader?<FilteredDishes category={category} menu={menu}/>:null}
+            
             
             
         </div>
