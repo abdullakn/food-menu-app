@@ -42,9 +42,10 @@ function Menus() {
     return (
         <div className="menu">
             
+            
             <Hero/>
             <SpecialDish menu={menu}/>
-            <FilteredDishes/>
+            <FilteredDishes category={category}/>
             
             
         </div>
