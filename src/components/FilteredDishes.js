@@ -3,9 +3,11 @@ import React,{useState} from 'react'
 function FilteredDishes(props) {
 
     const [filteredCategory,setFilteredCategory]=useState([])
+    const [active,setActive]=useState('')
 
 
     const selectDishCategory=((category)=>{
+        setActive(category)
         const alldishes=props.menu.filter((item)=>{
             return item.strCategory===category
         }).map((item)=>{
@@ -27,7 +29,7 @@ function FilteredDishes(props) {
 
     const allcategory=props.category.map((item)=>{
         return(
-            <li onClick={()=>{selectDishCategory(item.strCategory)}}>{item.strCategory}</li>
+            <li className={item.strCategory===active?"active":""} onClick={()=>{selectDishCategory(item.strCategory)}}>{item.strCategory}</li>
         )
     })
 
