@@ -1,14 +1,18 @@
 import React,{useState} from 'react'
+import Pagination from './Pagination'
 
 function FilteredDishes(props) {
 
     const [filteredCategory,setFilteredCategory]=useState([])
     const [active,setActive]=useState('Beef')
+    const [startIndex,setStartIndex]=useState(0)
+    const [endIndex,setEndIndex]=useState(4)
 
 
     const selectDishCategory=((category)=>{
         setActive(category)
         props.setSingleDish([])
+
         const alldishes=props.menu.filter((item)=>{
             return item.strCategory===category
         }).map((item)=>{
@@ -19,7 +23,7 @@ function FilteredDishes(props) {
                 </li>
             )
         })
-        console.log(alldishes)
+        // const paginationDishes=alldishes.slice[1,4]
 
     // no item in filterd dishes
 
@@ -39,6 +43,7 @@ function FilteredDishes(props) {
             </li>
         )
     })
+
 
     const allcategory=props.category.map((item)=>{
         return(
@@ -63,10 +68,11 @@ function FilteredDishes(props) {
                 <div className="filtered-dishes-results">
                 <ul className="flex flex-wrap gap-30">
                     {singleDish}
-                    {filteredCategory}
+                    {filteredCategory.slice(startIndex,endIndex)}
                 </ul>
 
                 </div>
+                <Pagination filteredDish={filteredCategory} startIndex={startIndex} setStartIndex={setStartIndex} setEndIndex={setEndIndex} />
             </div>
             
         </div>
