@@ -16,7 +16,7 @@ function Pagination(props) {
         )
     })
 
-    console.log("filtered",props.filteredDish.length)
+    console.log("filtered",props.filteredDish)
 
     const handlePagination=(page)=>{
         const startindex=(page-1)*4

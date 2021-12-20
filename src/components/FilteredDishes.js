@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import CardItem from './CardItem'
 import Pagination from './Pagination'
 
 function FilteredDishes(props) {
@@ -27,24 +28,32 @@ function FilteredDishes(props) {
 
     // no item in filterd dishes
 
+    console.log("allldishes",alldishes)
+        
         if (alldishes.length == 0){
-            setFilteredCategory(<h5 className="text-center">No Results Found</h5>)
+            setFilteredCategory(<h5 className="text-center">No Resultss Found</h5>)
+            
         }else{
             setFilteredCategory(alldishes)
+            console.log("set",filteredCategory)  
         }
         
     })
 
-    const singleDish=props.singleDish.map((item)=>{
-        return (
-            <li>
-                <img src={item.strMealThumb} alt="" />
-                <h5>{item.strMeal}</h5>
-            </li>
-        )
+
+    //display default single dish
+    const singleDish=props.singleDish.map((item,key)=>{
+        if(key<4){
+            return (
+           
+                <CardItem item={item}/>
+            )
+
+        }
+   
     })
 
-
+    //display all category as a button
     const allcategory=props.category.map((item)=>{
         return(
             <li className={item.strCategory===active?"active":""} onClick={()=>{selectDishCategory(item.strCategory)}}>{item.strCategory}</li>
@@ -69,6 +78,7 @@ function FilteredDishes(props) {
                 <ul className="flex flex-wrap gap-30">
                     {singleDish}
                     {filteredCategory.slice(startIndex,endIndex)}
+                    {/* {filteredCategory.length == 0?filteredCategory.slice(startIndex,endIndex):<h1>No Result</h1>} */}
                 </ul>
 
                 </div>

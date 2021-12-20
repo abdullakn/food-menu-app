@@ -1,5 +1,6 @@
 import React from 'react'
 import '../App.scss'
+import CardItem from './CardItem'
 
 function SpecialDish(prop) {
 
@@ -8,11 +9,8 @@ function SpecialDish(prop) {
     const specialMenu=prop.menu.map((item,index)=>{
         if (index<specialMenuCount){
         return(       
-            // <img src={item.strMealThumb} alt="" /> 
-                <li>
-                    <img src={item.strMealThumb} className="br-10" alt="" />
-                    <h5>{item.strMeal}</h5>
-               </li>               
+            <CardItem item={item}/>
+                       
                 )
                 }
              })
