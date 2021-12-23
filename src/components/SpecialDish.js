@@ -3,6 +3,7 @@ import '../App.scss'
 import CardItem from './CardItem'
 import Popup from './Popup'
 import {AllMenuContext} from './context'
+import AddToCart from './AddToCart'
 
 function SpecialDish(prop) {
 
@@ -30,6 +31,7 @@ function SpecialDish(prop) {
              })
     return (
         <section className="special-dishes">
+            <AddToCart/>
             {showPopup? <Popup clickedMenu={clickedMenu} setShowPopup={setShowPopup}/>:""}
            
             <div className="container">
