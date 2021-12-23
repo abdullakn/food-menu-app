@@ -1,21 +1,37 @@
-import React from 'react'
+import React,{useState,useContext} from 'react'
 import '../App.scss'
 import CardItem from './CardItem'
+import Popup from './Popup'
+import {AllMenuContext} from './context'
 
 function SpecialDish(prop) {
 
+    const [showPopup,setShowPopup]=useState(false)
+    const [clickedMenu,setClickedMenu]=useState()
+
     const specialMenuCount=8
 
-    const specialMenu=prop.menu.map((item,index)=>{
+
+    //context consumes
+
+    const allMenu=useContext(AllMenuContext)
+    
+
+
+    
+
+    const specialMenu=allMenu.map((item,index)=>{
         if (index<specialMenuCount){
         return(       
-            <CardItem item={item}/>
+            <CardItem setShowPopup={setShowPopup} setClickedMenu={setClickedMenu} item={item}/>
                        
                 )
                 }
              })
     return (
         <section className="special-dishes">
+            {showPopup? <Popup clickedMenu={clickedMenu} setShowPopup={setShowPopup}/>:""}
+           
             <div className="container">
                 <div className="special-dishes-content text-center">
                     <h2>Our Special Dishes</h2>
