@@ -1,12 +1,12 @@
 import React from 'react'
-import{useState,useEffect} from 'react';
 import '../App.scss'
 import SpecialDish from './SpecialDish';
 import Hero from './Hero';
 import FilteredDishes from './FilteredDishes';
 
 import { AllMenus } from './context';
-
+import {BrowserRouter as Router ,Routes,Route} from 'react-router-dom'
+import Header from './Header';
 
 // export const AllMenuContext=React.createContext()
 
@@ -23,7 +23,10 @@ function Menus() {
     //   console.log("dddd",menuImages)
     return (
         <div className="menu">
-           <Hero/>
+
+            {/* <Router> */}
+            <Header/>
+             <Hero/>
 
             <AllMenus>
 
@@ -31,6 +34,9 @@ function Menus() {
                <FilteredDishes/>
 
             </AllMenus>
+
+
+            {/* </Router> */}
             
             
         </div>

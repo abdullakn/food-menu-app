@@ -9,6 +9,7 @@ function SpecialDish(prop) {
 
     const [showPopup,setShowPopup]=useState(false)
     const [clickedMenu,setClickedMenu]=useState()
+    const [addToCart,setAddToCart]=useState([])
 
     const specialMenuCount=8
 
@@ -18,7 +19,11 @@ function SpecialDish(prop) {
     const allMenu=useContext(AllMenuContext)
     
 
-
+    function addToCartHandler(image,name){
+        console.log("addd to cart")
+        setAddToCart([...addToCart, {"img":image,"title":name} ])
+        console.log("addd to cart",addToCart)
+    }
     
 
     const specialMenu=allMenu.map((item,index)=>{
@@ -31,8 +36,8 @@ function SpecialDish(prop) {
              })
     return (
         <section className="special-dishes">
-            <AddToCart/>
-            {showPopup? <Popup clickedMenu={clickedMenu} setShowPopup={setShowPopup}/>:""}
+           {addToCart.length!=0 ? <AddToCart addToCart={addToCart}/> : null }
+            {showPopup? <Popup clickedMenu={clickedMenu} setShowPopup={setShowPopup} addToCartHandler={addToCartHandler}/>:""}
            
             <div className="container">
                 <div className="special-dishes-content text-center">

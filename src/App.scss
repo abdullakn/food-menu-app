@@ -125,14 +125,14 @@ header {
     background-color: #ffb902;
     color: rgb(34, 33, 33);
     width: 70px;
-    height: 70px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     font-weight: bold;
-    border: 5px solid rgba(255,255,255, 0.5);
+    border: 5px solid rgba(171, 224, 24, 0.5);
   }
 
   nav {
@@ -469,6 +469,11 @@ header {
       width: 100px;
       height: 70px;
       object-fit: cover;
+    }
+
+    >div{
+      border-bottom: 1px dashed black;
+      margin: 5px 0;
     }
   
   }

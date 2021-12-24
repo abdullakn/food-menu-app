@@ -36,6 +36,8 @@ function Popup(props) {
                    <li >{item.strIngredient3}</li>
                    <li >{item.strIngredient4}</li>
                </ul>
+               <button onClick={()=>{props.addToCartHandler(item.strMealThumb,item.strMeal)}}>Order Now</button>
+                <h5 onClick={closePopup} className="popup-close">Close</h5>
            </div>
         )
     })
@@ -47,8 +49,7 @@ function Popup(props) {
             <div className="popup-content">
                 
                 <h2>{clickedDish}</h2>
-                <button>Order Now</button>
-                <h5 onClick={closePopup} className="popup-close">Close</h5>
+               
             </div>
     
             
